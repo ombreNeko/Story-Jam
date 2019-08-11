@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Homemade+Apple&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/06813d8479.js"></script>
+    <title>Story Jam</title>
+
+
+    <style>
+        body {
+            background-image:url('static/login.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+          }
+
+          h1 {
+            text-align: center;
+            margin-top: 40px;
+            margin-left: 100px;
+            font-family:'Homemade Apple', cursive;
+            font-weight: 900;
+            font-size: 85px;
+          }
+
+          h3{
+            margin-top: 100px;
+            font-weight:bold;
+            text-align: center;
+          }
+          
+    </style>
+
+</head>
+<body>
+    <div>
+        <h3 class="justify-content-center">Welcome to</h3>
+        <h1>Story Jam</h1>
+    </div>
+
+    <div class="row">
+            <div class="card border-dark sm-3"style=" box-shadow: 0 4px 8px 0 rgba(0, 0,0, 0.2);width :25rem; margin-top : 27px ;margin-left: 770px">
+                    <div class="card-header text-center" style="background-color: black;color :white;">  LOGIN </div>
+                        <div class="card-body text-dark">
+                            
+                          <form method="POST">
+                              {% csrf_token %}
+                            <div class="form-group">
+                                
+                              <label for="username"> <i class="fas fa-user-circle" style="margin-right:10px"></i>Username</label>
+                              <input name ="username" type="text" class="form-control" id="username" placeholder="Enter username">
+                            </div>
+                            <div class="form-group">
+                              <label for="password"><i class="fas fa-key" style="margin-right:10px"></i>Password</label>
+                              <input name="password" type="password" class="form-control" id="password" placeholder="Password">
+                            </div>
+                            <div class="form-row justify-contents-center">
+                                <button style=" margin: 0 auto" type="submit" class="btn btn-dark" >Log in</button>
+                
+                            </div>
+                          </form>
+                    </div>
+        
+            </div>
+    </div>
+  
+
+    <div class="row">
+      <h4 style="margin-top: 10px; margin-left:770px ">New to Story Jam? <br> Sign up for free!</h4>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-2">
+          <div class="card text-white bg-secondary" style="margin-top:10px ;margin-left: 120px;width: 15rem;">
+            <div class="card-body">
+              <h5 class="card-title ">Writer</h5>
+              <p class="card-text">Share your stories and get them featured.</p>
+              <a href="{% url 'writer_signup' %}" class="btn btn-dark">Sign Up</a>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-md-2">
+          <div class="card text-white bg-dark" style="margin-top:10px ; margin-left: 50px; width:15rem; ">
+            <div class="card-body">
+              <h5 class="card-title ">Producer</h5>
+              <p class="card-text">Choose from a variety of fresh stories to animate/film.</p>
+              <a href="{% url 'producer_signup' %}" class="btn btn-secondary">Sign up</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+</body>
+</html>

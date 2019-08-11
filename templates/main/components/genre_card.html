@@ -1,0 +1,10 @@
+
+{% load static %}
+<div class=" card bg-dark  mt-5 mb-5 shadow p-3 mb-5 bg-white rounded ">
+        <img src="/static/{{genre.name}}.jpg" class="card-img" alt="...">
+        <div class="card-img-overlay">
+        <h5 class="text-center" style="font-family: 'Zhi Mang Xing', cursive;font-size: 200px;text-shadow:black">
+            <a class ="text-white" href="{% url 'genre' genre.id %}">{{genre.name}}</a>
+        </h5>
+    </div>
+    </div>

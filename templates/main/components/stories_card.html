@@ -1,0 +1,9 @@
+
+<div class="card text-white bg-secondary mt-3">
+    <div class="card-body">
+      <h1 class="story-title text-center">{{story.name }}</h1>
+      <p class="text-center"><b>Writer : </b>{{story.writer}} </p>
+    </div>
+   <a href="{% url 'story' story.id %}" role="button" class="card-footer  text-white bg-success btn">Make a deal: Rs.{{story.price}}</a>
+
+</div>

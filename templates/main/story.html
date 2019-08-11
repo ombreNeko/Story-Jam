@@ -1,0 +1,20 @@
+{% extends 'main/layout/base.html' %}
+
+{% block content %}
+
+<div class="card text-center">
+        <div class="card-header">
+          {{story.name}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{story.writer}}</h5>
+          <p class="card-text">{{story.summary}}</p>
+          <a href="{% url 'payment' story.id %}" class="btn btn-primary">Deal!</a>
+        </div>
+        <div class="card-footer text-muted">
+          blah
+        </div>
+      </div>
+      
+      
+{% endblock %}

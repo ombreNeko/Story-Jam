@@ -1,0 +1,13 @@
+{% extends 'main/layout/base.html' %}
+
+{% block content %}
+<div class="card-deck">
+       
+        {% for story in genre.stories.all %}
+               {% if story.is_sold == False %}
+                  {% include 'main/components/stories_card.html' %}
+               {% endif %}
+             {% endfor %}
+        </div>
+   </div>
+{% endblock %}

@@ -1,10 +1,17 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login
 from .forms import ExtendedUserCreationForm,WriterProfileForm,ProducerProfileForm
+from django.contrib.auth.views import (
+    LoginView,
+    LogoutView as Logout,
+)
 
+class Login(LoginView):
+    template_name= 'auth/login.html'
+    redirect_authenticated_user= True
 
 def Writer_Signup(request):
+    success_url = 'login'
     if request.method == 'POST':
         form = ExtendedUserCreationForm(request.POST)
         writer_profile_form = WriterProfileForm(request.POST)
@@ -19,8 +26,8 @@ def Writer_Signup(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username = 'username',password = 'password')
             
-            login(request,user)
-            return redirect('index')
+            # login(request,user)
+            return redirect('login')
 
     else:
         form = ExtendedUserCreationForm()
@@ -35,6 +42,7 @@ def Writer_Signup(request):
 
 
 def Producer_Signup(request):
+    success_url = 'login'
     if request.method == 'POST':
         form = ExtendedUserCreationForm(request.POST)
         producer_profile_form = ProducerProfileForm(request.POST)
@@ -49,8 +57,8 @@ def Producer_Signup(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username = 'username',password = 'password')
             
-            login(request,user)
-            return redirect('index')
+            #login(request,user)
+            return redirect('login')
 
     else:
         form = ExtendedUserCreationForm()

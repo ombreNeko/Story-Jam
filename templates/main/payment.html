@@ -1,0 +1,11 @@
+{% extends 'main/layout/base.html' %}
+{%  block content %}
+     
+
+    <form method="POST" action="{% url 'payment'  story.id  %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <h4>Amount : {{ story.price }}</h4>
+        <input type="submit" value="Pay">
+    </form>
+{% endblock %}
