@@ -50,3 +50,25 @@ def Payment(request,pk):
 class Payment_Success(TemplateView):
     template_name = 'main/payment_success.html'
 
+def MyProfile(request):
+    is_producer = None
+    is_writer = None
+
+    try:
+        is_producer = models.ProducerProfile.objects.get(producer = request.user)
+    except:
+        is_writer = models.WriterProfile.objects.get(writer = request.user)
+
+    if is_producer is not None :
+        context={
+            'profile' : is_producer,
+            'user' : is_producer.producer,
+            'stories': None
+        }
+    else :
+        context = {
+            'profile' : is_writer,
+            'user' : is_writer.writer,
+            'stories' : is_writer.story_set.all()
+        }
+    return render(request,'main/my_profile.html',context)

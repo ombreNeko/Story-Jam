@@ -8,5 +8,6 @@ urlpatterns = [
     path('genres/<int:pk>', views.Stories.as_view(), name ='genre'),
     path('story/<int:pk>', views.Story.as_view(),name='story'),
     path('story/<int:pk>/payment', views.Payment, name = 'payment'),
-    path('payment_successful/', views.Payment_Success.as_view() , name = 'success')
-]
+    path('payment_successful/', views.Payment_Success.as_view() , name = 'success'),
+    path('my_profile/', views.MyProfile , name = 'my_profile'),
+   ]
