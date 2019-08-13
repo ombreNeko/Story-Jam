@@ -1,9 +1,28 @@
 
-<div class="card text-white bg-secondary mt-3">
+<div class="card text-white bg-secondary mt-3 storyblock">
     <div class="card-body">
       <h1 class="story-title text-center">{{story.name }}</h1>
-      <p class="text-center"><b>Writer : </b>{{story.writer}} </p>
+      <p class="text-center"><a class = "text-white" href="{% url 'view_writer_profile' story.writer.id %}"><b>Writer : </b>{{story.writer}}</a> </p>
     </div>
-   <a href="{% url 'story' story.id %}" role="button" class="card-footer  text-white bg-success btn">Make a deal: Rs.{{story.price}}</a>
 
+    <div class="summary">
+      <div class="row">
+        <button type="button" class="  btn btn-outline-danger closed">Close</button>
+    </div>
+
+      <p>{{ story.summary }}</p>
+     
+    </div>
+
+    {% if user == None %}
+      <a  href="#" role="button" class="plot card-footer text-white bg-success btn">View Plot</a>
+    {% else %}
+    <div class="row" style="margin: 0">
+
+        <a  href="#" role="button" class="plot card-footer text-white bg-success btn col-6">View Plot</a>
+        <a href="{% url 'story' story.id %}" role="button" class="card-footer text-white bg-success btn col-6">Make Deal</a>
+      </div>
+    
+    
+    {% endif %}
 </div>

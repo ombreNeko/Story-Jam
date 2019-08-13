@@ -4,10 +4,10 @@
 <div class="card-deck">
        
         {% for story in genre.stories.all %}
-               {% if story.is_sold == False %}
-                  {% include 'main/components/stories_card.html' %}
-               {% endif %}
-             {% endfor %}
-        </div>
-   </div>
+            {% if story.is_sold == False %}
+               {% include 'main/components/stories_card.html' %}
+            {% endif %}
+         {% endfor %}
+</div>
+
 {% endblock %}

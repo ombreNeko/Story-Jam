@@ -15,10 +15,25 @@ class Stories(DetailView):
     model = models.Genre
     template_name = 'main/stories.html'
 
+def Stories(request , pk):
+    genre = models.Genre.objects.get(pk = pk)
+
+    try:
+        is_producer = models.ProducerProfile.objects.get(producer = request.user)
+    except:
+        is_producer = None
+
+    context = {
+        'user' : is_producer,
+        'genre' : genre
+    }
+
+    return render(request,'main/stories.html',context)
+
 class Story(DetailView):
     model = models.Story
     template_name = 'main/story.html'
-
+    
 def Payment(request,pk):
     
     story = models.Story.objects.get(pk = pk )
@@ -70,5 +85,11 @@ def MyProfile(request):
             'profile' : is_writer,
             'user' : is_writer.writer,
             'stories' : is_writer.story_set.all()
+            
         }
     return render(request,'main/my_profile.html',context)
+
+class ViewWriterProfile(DetailView):
+    model = models.WriterProfile
+    template_name = 'main/writer_profile.html'
+    
