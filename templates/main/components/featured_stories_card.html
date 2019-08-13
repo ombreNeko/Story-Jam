@@ -1,0 +1,19 @@
+<div class="card text-white bg-secondary mt-3 storyblock">
+    <div class="card-body">
+        <h1 class="story-title text-center">{{story.name }}</h1>
+        <p class="text-center"><a class = "text-white" href="{% url 'view_writer_profile' story.writer.id %}"><b>Writer : </b>{{story.writer}}</a> </p>
+        <p class="text-center"><a class = "text-white" href="{% url 'view_producer_profile' story.producer.id %}"><b>Producer : </b>{{ story.producer }}</a> </p>
+
+       
+    </div>
+
+    <div class="summary">
+        <div class="row">
+        <button type="button" class="  btn btn-outline-danger closed">Close</button>
+    </div>
+
+        <p>{{ story.summary }}</p>
+        
+    </div>
+
+</div>

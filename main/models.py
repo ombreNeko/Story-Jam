@@ -28,6 +28,7 @@ class Story(models.Model):
     is_sold = models.BooleanField(default=False)
     is_featured = models.BooleanField(default=False)
     writer = models.ForeignKey(WriterProfile, on_delete = models.DO_NOTHING, null= True, blank = True)
+    producer = models.ForeignKey(ProducerProfile,on_delete= models.DO_NOTHING, null = True, blank = True)
 
     def __str__(self):
         return self.name

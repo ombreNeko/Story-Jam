@@ -3,6 +3,8 @@ from main import models
 from django.views.generic import TemplateView,ListView,DetailView,CreateView
 from django.http import HttpResponseRedirect
 from main.forms import PaymentForm
+from django.contrib.auth.decorators import login_required
+
 
 class Index(TemplateView):
     template_name = 'main/index.html'
@@ -15,6 +17,7 @@ class Stories(DetailView):
     model = models.Genre
     template_name = 'main/stories.html'
 
+@login_required
 def Stories(request , pk):
     genre = models.Genre.objects.get(pk = pk)
 
@@ -33,7 +36,8 @@ def Stories(request , pk):
 class Story(DetailView):
     model = models.Story
     template_name = 'main/story.html'
-    
+
+@login_required
 def Payment(request,pk):
     
     story = models.Story.objects.get(pk = pk )
@@ -48,6 +52,7 @@ def Payment(request,pk):
             payment.story = story
             payment.save()
             story.is_sold = True
+            story.producer = payment.producer
             story.save()
 
             return redirect('success')
@@ -92,4 +97,12 @@ def MyProfile(request):
 class ViewWriterProfile(DetailView):
     model = models.WriterProfile
     template_name = 'main/writer_profile.html'
+
+class ViewProducerProfile(DetailView):
+    model = models.ProducerProfile
+    template_name = 'main/producer_profile.html'
     
+class FeaturedStories(ListView):
+    queryset = models.Story.objects.filter(is_featured = True)
+    template_name = 'main/index.html'
+    context_object_name = 'featured'
