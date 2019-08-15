@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from main import models
 from django.views.generic import TemplateView,ListView,DetailView,CreateView
 from django.http import HttpResponseRedirect
-from main.forms import PaymentForm,StoryForm,FeaturedForm
+from main.forms import PaymentForm,StoryForm,FeaturedForm,PDFform
 from django.contrib.auth.decorators import login_required
 
 
@@ -105,7 +105,7 @@ def MyProfile(request):
 
 @login_required
 def ViewWriterProfile(request , pk):
-    writer= models.WriterProfile.objects.get(id = pk)
+    writer= models.WriterProfile.objects.get(pk = pk)
     featured = models.Story.objects.filter(writer = writer).filter(is_featured = True)
     unsold = models.Story.objects.filter(writer = writer).filter(is_featured= False).filter(is_sold = False)
     context = {
@@ -128,7 +128,7 @@ def ViewProducerProfile(request , pk):
     
 
 class FeaturedStories(ListView):
-    model = models.Featured
+    queryset = models.Story.objects.filter(is_featured = True)
     template_name = 'main/index.html'
     context_object_name = 'featured'
 
@@ -167,5 +167,22 @@ def featured_upload(request,pk):
         form = FeaturedForm()
 
     return render(request, 'main/featured_upload.html', {
+        'form': form,
+    })
+
+@login_required
+def Add_PDF(request,pk):
+    story = models.Story.objects.get(pk = pk)
+    if request.method == 'POST':
+        form = PDFform(request.POST, request.FILES, instance= story)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect('my_profile')
+    else:
+        form = PDFform()
+
+    return render(request, 'main/pdf_upload.html', {
         'form': form,
     })

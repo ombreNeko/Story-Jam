@@ -71,6 +71,6 @@ class Featured(models.Model):
     featuring_type = models.IntegerField(choices= FEATURING_TYPE)
     story = models.OneToOneField('Story', on_delete = models.DO_NOTHING,null = True)
     upload_vid = models.FileField(upload_to='upload_featured/',null = True , blank = True)
-    upload_img = models.ImageField(upload_to = 'upload_img/',null = True, blank = True)
+    upload_img = models.ImageField(upload_to = 'upload_img/' ,null = True, blank = True)
     def __str__(self):
         return self.name

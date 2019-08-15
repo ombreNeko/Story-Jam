@@ -1,0 +1,11 @@
+{% extends 'main/layout/base.html' %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+
+  <p><a href="{% url 'my_profile' %}">Return to profile</a></p>
+{% endblock %}

@@ -19,4 +19,9 @@ class FeaturedForm(forms.ModelForm):
             model = models.Featured
             fields = ('name','duration','featuring_type','upload_vid','upload_img')
 
+class PDFform(forms.ModelForm):
+    class Meta:
+        model = models.Story
+        fields = ('upload','genre')
+
 
