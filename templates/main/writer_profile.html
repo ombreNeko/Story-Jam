@@ -1,7 +1,18 @@
 {% extends 'main/layout/base.html' %}
 
 {% block content %}
-    <h1>{{writerprofile.writer.username}}</h1>     
-
+    <h1>{{writer.writer.username}}</h1>   
+    <h1>Featured:</h1>
+    {% for story in featured %}
+         {% include 'main/components/featured_stories_card.html' %}
+         
+    {% endfor %}
+     <h1>Unsold:</h1>
+    <div class="card-deck">
+       
+        {% for story in stories %}
+               {% include 'main/components/stories_card.html' %}
+         {% endfor %}
+    </div>
 
 {% endblock %}

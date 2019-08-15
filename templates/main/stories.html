@@ -3,7 +3,7 @@
 {% block content %}
 <div class="card-deck">
        
-        {% for story in genre.stories.all %}
+        {% for story in stories %}
             {% if story.is_sold == False %}
                {% include 'main/components/stories_card.html' %}
             {% endif %}

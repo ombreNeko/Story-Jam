@@ -1,4 +1,5 @@
 <div class="card text-white bg-secondary mt-3 storyblock">
+   <a href="{% url story.upload_vid %}"><img src="{% url story.upload_img %}" class="card-img-top" alt="..."></a> 
     <div class="card-body">
         <h1 class="story-title text-center">{{story.name }}</h1>
         <p class="text-center"><a class = "text-white" href="{% url 'view_writer_profile' story.writer.id %}"><b>Writer : </b>{{story.writer}}</a> </p>

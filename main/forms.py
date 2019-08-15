@@ -7,4 +7,16 @@ class PaymentForm(forms.ModelForm):
     class Meta:
         model = models.Payment
         fields = ['mode','card_number','card_cvv','card_exp','name_on_card']
-        
+
+
+class StoryForm(forms.ModelForm):
+    class Meta:
+        model = models.Story
+        fields = ('name', 'summary','genre', 'price','upload')
+
+class FeaturedForm(forms.ModelForm):
+        class Meta:
+            model = models.Featured
+            fields = ('name','duration','featuring_type','upload_vid','upload_img')
+
+

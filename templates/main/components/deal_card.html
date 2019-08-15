@@ -1,0 +1,11 @@
+{% if deal.story.is_featured == False %}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{deal.story.name}}</h5>
+        <p class="card-text">{{deal.story.writer}}</p>
+        <p class="card-text">{{deal.story.price}}</p>
+        <a class="btn btn-success" href="{% url 'featured_upload' deal.story.id %}" role="button">Upload Featured!</a>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+{% endif %}

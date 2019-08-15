@@ -1,8 +1,16 @@
 {% extends 'main/layout/base.html' %}
 
 {% block content %}
-    <h1>{{producerprofile.producer.username}}</h1>   
-    <h1>{{producerprofile.producer.company}}</h1>     
+    <h1>{{producer.producer.username}}</h1>   
+    <h1>{{producer.producer.company}}</h1> 
+    
+    <h1>Featured:</h1>
+    {% for story in featured %}
+         {% include 'main/components/featured_stories_card.html' %}
+         
+    {% endfor %}
+
+    
 
 
 

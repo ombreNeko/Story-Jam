@@ -24,10 +24,28 @@
 
     {% endfor %}
         <div class="row justify-content-center" style="margin-left:0">
-            <a class="btn btn-dark btn-lg" href="#" role="button">Add Story</a>
+            <a class="btn btn-dark btn-lg" href="{% url 'story_upload' %}" role="button">Add Story</a>
         </div>
 {% endif %}
-    
+
+<h1>Featured Stories</h1>
+<div class="card-deck">
+       
+    {% for story in featured %}
+        
+        {% include 'main/components/featured_stories_card.html' %}
+        
+     {% endfor %}
+</div>
+
+{% if deals != None %}
+<h1>Deals</h1>
+<div class="card-deck">
+    {% for deal in deals %}
+        {% include 'main/components/deal_card.html' %}
+    {% endfor %}
+</div>
+{% endif %}
     
 
 

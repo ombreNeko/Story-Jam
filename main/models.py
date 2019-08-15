@@ -29,14 +29,15 @@ class Story(models.Model):
     is_featured = models.BooleanField(default=False)
     writer = models.ForeignKey(WriterProfile, on_delete = models.DO_NOTHING, null= True, blank = True)
     producer = models.ForeignKey(ProducerProfile,on_delete= models.DO_NOTHING, null = True, blank = True)
+    upload = models.FileField(upload_to='upload_story/',null = True , blank = True)
+    uploaded_at = models.DateTimeField(auto_now_add=True,null = True)
+    genre = models.ManyToManyField('Genre')
 
     def __str__(self):
         return self.name
 
 class Genre(models.Model):
-    name = models.CharField(max_length = 256)
-    stories = models.ManyToManyField('Story')
-
+    name = models.CharField(max_length = 256, default = 'fantasy')
     def __str__(self):
         return self.name
 
@@ -57,3 +58,19 @@ class Payment(models.Model):
 
     def __str__(self):
         return "{} bought {} story".format(self.producer.producer.username, self.story.name)
+
+class Featured(models.Model):
+    FEATURING_TYPE = [
+        (1,'Short-film-animated'),
+        (2,'Short-film'),
+        (3,'Animated movie'),
+        (4,'Movie'),
+    ]
+    name = models.CharField(max_length = 256)
+    duration = models.PositiveIntegerField()
+    featuring_type = models.IntegerField(choices= FEATURING_TYPE)
+    story = models.OneToOneField('Story', on_delete = models.DO_NOTHING,null = True)
+    upload_vid = models.FileField(upload_to='upload_featured/',null = True , blank = True)
+    upload_img = models.ImageField(upload_to = 'upload_img/',null = True, blank = True)
+    def __str__(self):
+        return self.name

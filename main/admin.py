@@ -5,5 +5,6 @@ admin.site.register ([
     models.ProducerProfile,
     models.Story,
     models.Genre,
-    models.Payment
+    models.Payment,
+    models.Featured
 ])
