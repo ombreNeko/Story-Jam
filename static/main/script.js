@@ -1,12 +1,11 @@
-var plotbtn = document.querySelector(".plot");
-var closebtn = document.querySelector(".closed");
+var plotbtn = $('.plot')
+var closebtn = $(".closed");
 
-var content = document.querySelector(".summary");
-plotbtn.addEventListener("click",function(){
-    content.classList.add("finalPos");
-    closebtn.addEventListener("click",function(){
-    content.classList.remove("finalPos");
-    })
+
+plotbtn.click(function(){
+    $(this).parent().find('.summary').addClass('finalPos');
 })
 
-
+closebtn.click(function(){
+    $(this).parent().parent().removeClass('finalPos');
+})
