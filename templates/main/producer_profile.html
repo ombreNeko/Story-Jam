@@ -7,7 +7,7 @@
         <div class="container">
         <div class="row justify-content-center mt-1">
             <div class="col-md-6 viewpic" style="position: relative">
-                {% if producer.photo.all %}
+                {% if producer.photo != None %}
                     <img src="{{ producer.photo.url }}" class="card-img-top dp " alt="producer Pic">
                 {% else %}
                     <img src="{% static 'auth/def_dp.jpg' %}" class="card-img-top dp  " alt="Photo">
@@ -65,17 +65,6 @@
             </div>
         </div>
 <hr>
-
-    <div class="card text-white bg-dark mb-3 mt-3">
-        <div class="card-header mytext size-m text-center "> <b> Available Stories</b></div>
-        <div class="card-body bg-secondary">
-            <div class="card-columns">
-            {% for story in stories %}
-                {% include 'main/components/stories_card.html' %}
-            {% endfor %}
-            </div>
-        </div>
-    </div>
 
     <div class="card text-white bg-dark mb-3 mt-3">
             <div class="card-header mytext size-m text-center "> <b> Featured Stories</b></div>

@@ -1,0 +1,27 @@
+{% extends 'main/layout/base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="card text-white bg-secondary mb-3 mytext mt-5">
+            <div class="card-header bg-dark size-m">
+                <a href="{% url 'my_profile' %}"><i style="color: green" class="fas fa-arrow-circle-left"></i></a>
+                Update Profile Picture</div>
+            <div class="card-body size-s">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="id_photo">Photo:</label>
+                    <input type="file" name="photo" accept="image/*" id="id_photo">
+                    <button class= " btn btn-success btn-lg"type="submit">Upload</button>
+                    
+                </form>
+              
+            </div>
+          </div>
+
+</div>
+
+
+   
+{% endblock %}

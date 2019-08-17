@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from main import models
-from django.views.generic import TemplateView,ListView,DetailView,CreateView
+from django.views.generic import TemplateView,ListView,DetailView,CreateView,UpdateView
 from django.http import HttpResponseRedirect
-from main.forms import PaymentForm,StoryForm,FeaturedForm,PDFform
+from main.forms import PaymentForm,StoryForm,FeaturedForm,PDFform,UpdatePhotoFormWriter,UpdatePhotoFormProducer
 from django.contrib.auth.decorators import login_required
 
 
@@ -80,6 +80,7 @@ def MyProfile(request):
         is_producer = models.ProducerProfile.objects.get(producer = request.user)
     except:
         is_writer = models.WriterProfile.objects.get(writer = request.user)
+        
 
     if is_producer is not None :
         featured = feautured_stories.filter(producer = is_producer)
@@ -193,3 +194,46 @@ def Add_PDF(request,pk):
     return render(request, 'main/pdf_upload.html', {
         'form': form,
     })
+
+@login_required
+def UpdatePhoto(request,pk):
+    try:
+        is_producer = models.ProducerProfile.objects.get(producer = request.user)
+    except:
+        is_producer = None
+
+    if is_producer is None:
+        user = models.WriterProfile.objects.get(pk=pk)
+    else:
+        user = models.ProducerProfile.objects.get(pk=pk)
+
+    
+    
+    if is_producer is None:
+        form = UpdatePhotoFormWriter(request.POST, request.FILES, instance= user)
+        if request.method == 'POST':
+            if form.is_valid():
+                form.save()
+                return redirect('my_profile')
+        else:
+            form = UpdatePhotoFormWriter()
+
+        return render(request, 'main/change-profile-photo.html', {
+            'form': form,
+        })
+    else:
+        form = UpdatePhotoFormProducer(request.POST, request.FILES, instance= user)
+        if request.method == 'POST':
+            if form.is_valid():
+                form.save()
+                return redirect('my_profile')
+        else:
+            form = UpdatePhotoFormProducer()
+
+        return render(request, 'main/change-profile-photo.html', {
+            'form': form,
+        })
+
+
+
+

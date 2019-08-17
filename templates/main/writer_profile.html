@@ -7,7 +7,7 @@
         <div class="container">
         <div class="row justify-content-center mt-1">
             <div class="col-md-6 viewpic" style="position: relative">
-                {% if writer.photo.all %}
+                {% if writer.photo != None %}
                     <img src="{{ writer.photo.url }}" class="card-img-top dp " alt="writer Pic">
                 {% else %}
                     <img src="{% static 'auth/def_dp.jpg' %}" class="card-img-top dp  " alt="Photo">

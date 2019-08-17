@@ -2,17 +2,77 @@
 
 {% block content %}
 
-<div class="card text-center">
-        <div class="card-header">
-          {{story.name}}
+<div class="card text-center mytext mt-5">
+        <div class="card-header text-white bg-dark size-m">
+          Details
         </div>
-        <div class="card-body">
-          <h5 class="card-title">{{story.writer}}</h5>
-          <p class="card-text">{{story.summary}}</p>
-          <a href="{% url 'payment' story.id %}" class="btn btn-primary">Deal!</a>
+        <div class="card-body size-s">
+          <div class="row">
+            <div class="col">
+             <b>Story Name :</b> 
+            </div>
+            <div class="col">
+              {{story.name}}
+            </div>
+          </div>
+<hr>
+          <div class="row">
+              <div class="col">
+               <b>Genre : </b> 
+              </div>
+              <div class="col">
+                {% for genre in story.genre.all%}
+                  {{genre}} &nbsp;
+                  {% endfor %}
+              </div>
+            </div>
+<hr>
+          <div class="row">
+            <div class="col">
+             <b>Writer's Username :</b> 
+            </div>
+            <div class="col">
+              {{story.writer.writer.username}}
+            </div>
+          </div>
+<hr>
+          <div class="row">
+            <div class="col">
+           <b>Story Content Status :</b>   
+            </div>
+            <div class="col">
+              {% if story.upload %}
+              Full story available
+              {% else %}
+              Story is not complete,writer will update it shortly
+              {% endif%}
+            </div>
+          </div>
+<hr>
+
+          <div class="row">
+            <div class="col">
+           <b>  Price :</b> 
+            </div>
+            <div class="col">
+             Rs. {{story.price}}
+            </div>
+          </div>
+<hr>
+          <div class="row justify-content-center">
+           <b>Summary</b> 
+          </div>
+
+          <div class="row ">
+            <div class="col-md-12">
+              {{story.summary }}
+            </div>
+          </div>
+<hr>
+          <a href="{% url 'payment' story.id %}" class="btn btn-success btn-lg">Deal</a>
         </div>
-        <div class="card-footer text-muted">
-          blah
+        <div class="card-footer bg-dark text-muted">
+          *once a deal is made, it cannot be reverted.
         </div>
       </div>
       

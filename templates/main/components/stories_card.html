@@ -8,7 +8,7 @@
 
     <div class="summary">
       <div class="row">
-        <button type="button" class="  btn btn-outline-danger closed">Close</button>
+        <i class="fas fa-times-circle closed"></i>
     </div>
 
       <p>{{ story.summary }}</p>
@@ -18,14 +18,14 @@
     {% if user == None %}
     
 
-      <a role="button" class="plot card-footer text-white bg-danger btn btn-block">View Plot</a>
+      <a role="button" class="plot card-footer text-white  mybtn button1 btn-block">View Plot</a>
     
     {% else %}
     
     <div class="row" style="margin: 0">
 
         <a  role="button" class="plot1 card-footer text-white bg-dark btn col-6">View Plot</a>
-        <a href="{% url 'story' story.id %}" role="button" class="card-footer text-white bg-danger btn col-6">Make a Deal</a>
+        <a href="{% url 'story' story.id %}" role="button" class="card-footer text-white mybtn button1 clr col-6">Make a Deal</a>
       </div>
     
     

@@ -15,7 +15,7 @@ class ProducerProfile(models.Model):
     producer = models.OneToOneField(User,on_delete = models.CASCADE)
     workex = models.PositiveIntegerField()
     bio = models.TextField(null= True, blank= True)
-    photo = models.URLField(null = True, blank= True)
+    photo = models.ImageField(upload_to = 'upload_dp/',null = True, blank= True)
     contact = models.CharField(max_length = 12)
     company  = models.CharField(max_length = 256)
     def __str__(self):

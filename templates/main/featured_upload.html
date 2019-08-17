@@ -1,11 +1,73 @@
 {% extends 'main/layout/base.html' %}
 
 {% block content %}
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload</button>
-  </form>
 
-  <p><a href="{% url 'my_profile' %}">Return to profile</a></p>
+<div class="row justify-content-center">
+<div class="card text-white bg-secondary mb-3 mytext mt-5" style="width: 65 rem;">
+
+  <div class="card-header bg-dark size-m ">
+  <a href="{% url 'my_profile' %}"><i style="color: green"  class="fas fa-arrow-circle-left"></i></a>
+    Upload Trailor
+</div>
+  <div class="card-body size-s">
+    <form method="post" enctype="multipart/form-data">
+    
+      {% csrf_token %}
+    
+    
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="id_name">Name:</label>
+          <input type="text" name="name" maxlength="256" required="" id="id_name">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="id_duration">Duration:</label>
+           <input type="number" name="duration" min="0" required="" id="id_duration">
+        </div>
+      </div>
+    
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="id_upload_vid">Upload vid:</label> 
+          <input type="file" name="upload_vid" id="id_upload_vid">   
+        </div>
+        <div class="form-group col-md-6">
+          <p><label for="id_upload_img">Upload img:</label> <input type="file" name="upload_img" accept="image/*" id="id_upload_img">
+    
+        </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="id_featuring_type">Featuring type:</label> <select name="featuring_type" required="" id="id_featuring_type">
+            <option value="" selected="">---------</option>
+            
+            <option value="1">Short-film-animated</option>
+            
+            <option value="2">Short-film</option>
+            
+            <option value="3">Animated movie</option>
+            
+            <option value="4">Movie</option>
+            
+            </select>
+            
+          </div>
+        </div>
+
+
+      <div class="form-row justify-content-center">
+          <button class =" btn-success btn-lg "type="submit">Upload</button>
+      </div>
+      
+    </form>
+    
+    
+    
+    
+    
+      
+   
+  </div>
+</div>
+</div>
 {% endblock %}

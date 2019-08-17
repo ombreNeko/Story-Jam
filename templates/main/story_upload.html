@@ -1,11 +1,76 @@
 {% extends 'main/layout/base.html' %}
-
 {% block content %}
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload</button>
-  </form>
 
-  <p><a href="{% url 'my_profile' %}">Return to profile</a></p>
+<div class="row justify-content-center mt-5">
+<div class="card text-white bg-secondary mb-3 mytext " style="max-width: 37rem"> 
+    <div class="card-header bg-dark text-white size-m ">
+      <a href="{% url 'my_profile' %}"><i style="color: green"  class="fas fa-arrow-circle-left"></i></a>
+      Upload Story </div>
+    <div class="card-body size-s">
+
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <label for="id_name">Name:</label> <input type="text" name="name" maxlength="256" required="" id="id_name"> 
+          <div class="form-row mt-2">
+              <div class="col-md-12 form-group">
+                  <label for="id_summary">Summary:</label>    
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 form-group">
+                    <textarea name="summary" cols="50" rows="5" required="" id="id_summary"></textarea>  
+                </div>
+              </div>
+
+       
+
+        <div class="form-row">
+          <div class="col-md-12 form-group">
+              <label for="id_genre">Genre:</label> 
+                  
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-12 form-group">
+              <select name="genre" required="" id="id_genre" multiple="">
+              <option value="1">fantasy</option>
+                
+              <option value="2">dystopia</option>
+            
+              <option value="3">scifi</option>
+            
+              <option value="4">romance</option>
+            </select>
+          </div>
+        </div>
+       
+        
+        <div class="form-row mt-2">
+          <label for="id_price">Price:</label> <input type="number" name="price" step="any" required="" id="id_price">
+          
+        </div>
+
+        <div class="form-row mt-2">
+          <label for="id_upload">Upload:</label> <input type="file" name="upload" id="id_upload">
+          
+          </div>
+          <div class="form-row mt-2 justify-content-center">
+            <button class ="btn btn-lg btn-success  "type="submit">Upload</button>
+          
+            </div>
+        </form>
+        
+
+
+    </div>
+  </div>
+</div>
+
+
+
 {% endblock %}
+
+
+
+

@@ -25,3 +25,12 @@ class PDFform(forms.ModelForm):
         fields = ('upload',)
 
 
+class UpdatePhotoFormWriter(forms.ModelForm):
+    class Meta:
+        model = models.WriterProfile
+        fields = ('photo',)
+
+class UpdatePhotoFormProducer(forms.ModelForm):
+    class Meta:
+        model = models.ProducerProfile
+        fields = ('photo',)

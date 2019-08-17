@@ -4,13 +4,13 @@
      
     <div class="row justify-content-center mt-5">
         <div class="col-md-6 on">
-                {% if profile.photo.all %}
+                {% if profile.photo %}
                 <img src="{{ profile.photo.url }}" class="card-img-top dp " alt="Profile Pic">
                 {% else %}
                 <img src="{% static 'auth/def_dp.jpg' %}" class="card-img-top dp  " alt="Photo">
             {% endif %}
             <div class="overlay">
-                <a href="#" role="button" class="btn btn-dark "><i class="fas fa-user-edit"></i></a>
+                <a href="{% url 'update_profile_pic' profile.id %}" role="button" class="btn btn-dark "><i class="fas fa-user-edit"></i></a>
             </div>
                 
             
@@ -71,10 +71,10 @@
                 <div class="card-columns">
                 {% for story in stories %}
                 
-                <div class="card box card-height bg-danger mytext">
+                <div class="card box card-height clr mytext">
                     <div class="card-body">
-                        <h1 class="card-title text-center">{{story.name }}</h1>
-                        <p class="text-center">{{story.summary}} </p>
+                        <h1 class="card-title text-center"><a class=" text-white "href="{% url 'story' story.id %}">{{story.name }}</a></h1>
+                       
                     </div>
                     <div class="card-footer">
                         {% if story.is_sold == False %}
@@ -110,8 +110,8 @@
                     {% endfor %}
                 </div>
                 {% else %}
-                <div class="card-text">
-                    <p>You don't have any featured stories yet!</p>
+                <div class="card-text text-center">
+                    <p>You don't have any featured stories yet</p>
                 </div>
                 {% endif %}
             
@@ -119,13 +119,18 @@
         </div>
 
         {% if deals != None %}
-        <div class="card bg-dark mb-3 mytext ">
+        
+        <div class="card bg-dark mb-3 mytext mb-5">
             <div class="card-header text-white text-center size-m"><b>My Deals</b></div>
             <div class="card-body bg-secondary">
+                    <div class="card-text text-white text-center">
+                        <p>Your pending deals will be displayed here.</p>
+                    </div>
                 <div class="card-columns">
                     {% for deal in deals %}
                         {% include 'main/components/deal_card.html' %}
                     {% endfor %}
+                    
                 </div>
             </div>
         </div>

@@ -14,6 +14,7 @@ urlpatterns = [
     path('view_producer_profile/<int:pk>',views.ViewProducerProfile,name = 'view_producer_profile'),
     path('upload_story/',views.story_upload, name = 'story_upload'),
     path('story/<int:pk>/upload_featured',views.featured_upload, name = 'featured_upload'),
-    path('story/<int:pk>/add_pdf',views.Add_PDF,name = 'add_pdf')
+    path('story/<int:pk>/add_pdf',views.Add_PDF,name = 'add_pdf'),
+    path('my_profile/<int:pk>/update_dp', views.UpdatePhoto, name= 'update_profile_pic'),
   
    ]

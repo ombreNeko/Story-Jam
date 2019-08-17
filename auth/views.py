@@ -26,8 +26,7 @@ def Writer_Signup(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username = 'username',password = 'password')
             
-            # login(request,user)
-            return redirect('login')
+            return redirect('index')
 
     else:
         form = ExtendedUserCreationForm()
@@ -57,8 +56,7 @@ def Producer_Signup(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username = 'username',password = 'password')
             
-            #login(request,user)
-            return redirect('login')
+            return redirect('index')
 
     else:
         form = ExtendedUserCreationForm()

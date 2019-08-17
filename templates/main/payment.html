@@ -1,11 +1,16 @@
 {% extends 'main/layout/base.html' %}
 {%  block content %}
      
+<div class="row justify-content-center">
 
-   <div class="card mytext text-white bg-dark mb-3 col-5 mt-5" style="margin-left: 27%" >
-        <div class="card-header size-m">Make Payment</div>
+   <div class="card mytext text-white bg-dark mb-3 col-5 mt-5" >
+       
+        <div class="card-header bg-dark size-m">
+            <a href="{% url 'story' story.id  %}"><i style="color:white"  class="fas fa-arrow-circle-left"></i></a>
+            Make Payment</div>
         <div class="card-body">
-        <form method="POST" action="/story/17/payment">
+
+        <form method="POST" action="{% url 'payment'  story.id  %}">
             {% csrf_token %}
             <div class="form-group">
                 <label for="id_mode">Mode:</label> <select name="mode" required="" id="id_mode">
@@ -50,6 +55,6 @@
         </div>
       </div>
     
-
+    </div>
 
 {% endblock %}
