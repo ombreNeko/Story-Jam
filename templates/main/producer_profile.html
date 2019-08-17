@@ -1,17 +1,106 @@
 {% extends 'main/layout/base.html' %}
-
+{% load static %}
 {% block content %}
-    <h1>{{producer.producer.username}}</h1>   
-    <h1>{{producer.producer.company}}</h1> 
+
+<div class="card border-dark mb-5 mt-5 col-md-auto" style="border: 2px solid #343a40; border-radius: 20px; background-color: transparent ">
+    <div class="card-body">
+        <div class="container">
+        <div class="row justify-content-center mt-1">
+            <div class="col-md-6 viewpic" style="position: relative">
+                {% if producer.photo.all %}
+                    <img src="{{ producer.photo.url }}" class="card-img-top dp " alt="producer Pic">
+                {% else %}
+                    <img src="{% static 'auth/def_dp.jpg' %}" class="card-img-top dp  " alt="Photo">
+                {% endif %}
+               <div class="card bg-danger hello col-md-6 col-lg-8 col-sm-4" style="box-shadow:0 0 11px white">
+                   <div class="card-body text-white mytext text-center">
+                       <p class="size-m " >Hello, <br>I am {{producer.producer.username}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>         
+
+       
+    <div class="card text-white bg-dark mt-3 mytext">
+            <div class="card-header text-center size-m"><b>Basic Information</b></div>
+            <div class="card-body bg-secondary size-s">
+                <div class="row">
+                    <div class="col">
+                        <b>Username:</b> {{producer.producer.username}}
+                    </div>
+                    <div class="col">
+                        <b>First Name:</b> {{producer.producer.first_name}}
+                    </div>
+                    <div class="col">
+                        <b>Last Name:</b> {{producer.producer.last_name}}
+                    </div>   
+                </div>
     
-    <h1>Featured:</h1>
-    {% for story in featured %}
-         {% include 'main/components/featured_stories_card.html' %}
-         
-    {% endfor %}
+                <div class="row">
+                    <div class="col">
+                        <b>Email Id:</b> {{producer.producer.email}}
+                    </div>
+                    <div class="col">
+                        <b>Work-Experience:</b> {{producer.workex}}&nbsp years
+                    </div>
+                    <div class="col">
+                        <b>Contact Number:</b> {{producer.contact}}
+                    </div>   
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <b>Company:</b> {{producer.company}}
+                    </div>  
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4">
+                        <b>About Me:</b>
+                    </div>
+                    <div class="col-md-4">
+                        <b>{{producer.bio}}</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+<hr>
 
+    <div class="card text-white bg-dark mb-3 mt-3">
+        <div class="card-header mytext size-m text-center "> <b> Available Stories</b></div>
+        <div class="card-body bg-secondary">
+            <div class="card-columns">
+            {% for story in stories %}
+                {% include 'main/components/stories_card.html' %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="card text-white bg-dark mb-3 mt-3">
+            <div class="card-header mytext size-m text-center "> <b> Featured Stories</b></div>
+            <div class="card-body bg-secondary">
+                {% if featured.all %}
+                <div class="card-columns">
+                    {% for story in featured %}
     
+                        {% include 'main/components/featured_stories_card.html' %}
+                        
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="card-text mytext text-center">
+                    <p>{{producer.producer.username}} doesn't have any featured stories yet!</p>
+                </div>
+                {% endif %}
+            
+            </div>
+        </div>
+</div>
 
+                        
+                    
 
+           
 
 {% endblock %}

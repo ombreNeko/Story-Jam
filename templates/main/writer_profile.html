@@ -1,18 +1,101 @@
 {% extends 'main/layout/base.html' %}
-
+{% load static %}
 {% block content %}
-    <h1>{{writer.writer.username}}</h1>   
-    <h1>Featured:</h1>
-    {% for story in featured %}
-         {% include 'main/components/featured_stories_card.html' %}
-         
-    {% endfor %}
-     <h1>Unsold:</h1>
-    <div class="card-deck">
+
+<div class="card border-dark mb-5 mt-5 col-md-auto" style="border: 2px solid #343a40; border-radius: 20px; background-color: transparent ">
+    <div class="card-body">
+        <div class="container">
+        <div class="row justify-content-center mt-1">
+            <div class="col-md-6 viewpic" style="position: relative">
+                {% if writer.photo.all %}
+                    <img src="{{ writer.photo.url }}" class="card-img-top dp " alt="writer Pic">
+                {% else %}
+                    <img src="{% static 'auth/def_dp.jpg' %}" class="card-img-top dp  " alt="Photo">
+                {% endif %}
+               <div class="card bg-danger hello col-md-6 col-lg-8 col-sm-4" style="box-shadow:0 0 11px white">
+                   <div class="card-body text-white mytext text-center">
+                       <p class="size-m " >Hello, <br>I am {{writer.writer.username}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>         
+
        
-        {% for story in stories %}
-               {% include 'main/components/stories_card.html' %}
-         {% endfor %}
+    <div class="card text-white bg-dark mt-3 mytext">
+            <div class="card-header text-center size-m"><b>Basic Information</b></div>
+            <div class="card-body bg-secondary size-s">
+                <div class="row">
+                    <div class="col">
+                        <b>Username:</b> {{writer.writer.username}}
+                    </div>
+                    <div class="col">
+                        <b>First Name:</b> {{writer.writer.first_name}}
+                    </div>
+                    <div class="col">
+                        <b>Last Name:</b> {{writer.writer.last_name}}
+                    </div>   
+                </div>
+    
+                <div class="row">
+                    <div class="col">
+                        <b>Email Id:</b> {{writer.writer.email}}
+                    </div>
+                    <div class="col">
+                        <b>Work-Experience:</b> {{writer.workex}}&nbsp years
+                    </div>
+                    <div class="col">
+                        <b>Contact Number:</b> {{writer.contact}}
+                    </div>   
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4">
+                        <b>About Me:</b>
+                    </div>
+                    <div class="col-md-4">
+                        <b>{{writer.bio}}</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+<hr>
+
+    <div class="card text-white bg-dark mb-3 mt-3">
+        <div class="card-header mytext size-m text-center "> <b> Available Stories</b></div>
+        <div class="card-body bg-secondary">
+            <div class="card-columns">
+            {% for story in stories %}
+                {% include 'main/components/stories_card.html' %}
+            {% endfor %}
+            </div>
+        </div>
     </div>
+
+    <div class="card text-white bg-dark mb-3 mt-3">
+            <div class="card-header mytext size-m text-center "> <b> Featured Stories</b></div>
+            <div class="card-body bg-secondary">
+                {% if featured.all %}
+                <div class="card-columns">
+                    {% for story in featured %}
+    
+                        {% include 'main/components/featured_stories_card.html' %}
+                        
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="card-text mytext text-center">
+                    <p>{{writer.writer.username}} doesn't have any featured stories yet!</p>
+                </div>
+                {% endif %}
+            
+            </div>
+        </div>
+</div>
+
+                        
+                    
+
+           
 
 {% endblock %}

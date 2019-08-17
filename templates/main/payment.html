@@ -2,10 +2,54 @@
 {%  block content %}
      
 
-    <form method="POST" action="{% url 'payment'  story.id  %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <h4>Amount : {{ story.price }}</h4>
-        <input type="submit" value="Pay">
-    </form>
+   <div class="card mytext text-white bg-dark mb-3 col-5 mt-5" style="margin-left: 27%" >
+        <div class="card-header size-m">Make Payment</div>
+        <div class="card-body">
+        <form method="POST" action="/story/17/payment">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_mode">Mode:</label> <select name="mode" required="" id="id_mode">
+                <option value="" selected="">---------</option>
+        
+                <option value="cc">Credit Card</option>
+        
+                <option value="dc">Debit Card</option>
+        
+                </select>
+            </div>
+           
+        <div class="form-group">
+            <label for="id_card_number">Card number:</label>
+            <input type="text" name="card_number" maxlength="256" required="" id="id_card_number">
+        </div>
+        
+        <div class="form-group">
+            <label for="id_card_cvv">Card cvv:</label> 
+            <input type="text" name="card_cvv" maxlength="3" required="" id="id_card_cvv">
+            
+        </div>
+            
+        <div class="form-group">
+            <label for="id_card_exp">Card exp:</label> 
+            <input type="text" name="card_exp" maxlength="5" required="" id="id_card_exp">
+      
+        </div>
+        
+        <div class="form-group">
+            <label for="id_name_on_card">Name on card:</label> 
+            <input type="text" name="name_on_card" maxlength="256" required="" id="id_name_on_card">
+            
+        </div>
+        <h4>Amount : 7000.0</h4>
+      <div class="justify-content-center form-row">
+          
+          <input type="submit" class = "btn btn-success btn-lg " style= "font-weight: bold" value="Pay">
+
+      </div>
+      </form>
+        </div>
+      </div>
+    
+
+
 {% endblock %}

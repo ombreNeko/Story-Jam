@@ -105,6 +105,12 @@ def MyProfile(request):
 
 @login_required
 def ViewWriterProfile(request , pk):
+    
+    try:
+        is_producer = models.ProducerProfile.objects.get(producer = request.user)
+    except:
+        is_producer = None
+
     writer= models.WriterProfile.objects.get(pk = pk)
     featured = models.Story.objects.filter(writer = writer).filter(is_featured = True)
     unsold = models.Story.objects.filter(writer = writer).filter(is_featured= False).filter(is_sold = False)
@@ -112,7 +118,7 @@ def ViewWriterProfile(request , pk):
         'writer' : writer,
         'featured' : featured,
         'stories' : unsold,
-        'user' : None,
+        'user' : is_producer,
     }
     return render(request,'main/writer_profile.html',context)
 

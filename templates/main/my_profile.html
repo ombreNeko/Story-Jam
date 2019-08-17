@@ -37,13 +37,22 @@
                     <b>Email Id:</b> {{user.email}}
                 </div>
                 <div class="col">
-                    <b>Work-Experience:</b> {{profile.workex}}&nbsp years
+                    <b>Work-Exp:</b> {{profile.workex}}&nbsp years
                 </div>
                 <div class="col">
                     <b>Contact Number:</b> {{profile.contact}}
-                </div>   
+                </div> 
             </div>
+
+            {% if profile.company%} 
+            <div class="row">
+                <div class="col">
+                    <b>Company:</b> {{profile.company}}
+                </div>  
+            </div>
+                {% endif %}
             <hr>
+            
             <div class="row">
                 <div class="col-md-4">
                     <b>About Me:</b>
@@ -110,7 +119,6 @@
         </div>
 
         {% if deals != None %}
-        <h1>Deals</h1>
         <div class="card bg-dark mb-3 mytext ">
             <div class="card-header text-white text-center size-m"><b>My Deals</b></div>
             <div class="card-body bg-secondary">
