@@ -1,7 +1,7 @@
 {% extends 'main/layout/base.html' %}
 
 {% block content %}
-<div class="card-deck">
+<div class="card-columns">
        
         {% for story in stories %}
             {% if story.is_sold == False %}

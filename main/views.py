@@ -142,6 +142,7 @@ def story_upload(request):
             story = form.save(commit=False)
             story.writer = models.WriterProfile.objects.get(writer = request.user)
             story.save()
+            form.save_m2m()
             return redirect('my_profile')
     else:
         form = StoryForm()

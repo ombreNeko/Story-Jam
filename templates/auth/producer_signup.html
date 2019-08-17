@@ -1,13 +1,94 @@
 {% extends 'auth/base.html' %}
 {%  block content %}
-     
 
-    <form method="POST" action="{% url 'producer_signup' %}">
+<div class=" card mytext" style="width: 35rem; height: 52rem; margin-top:6%; margin-left:27%; border-color: transparent;background-color: whitesmoke">
+        <h5 class="card-header bg-danger text-white text-center"><b>Sign up as a Producer!</b></h5>
+        <div class="card-body">
+         
+          <form method="POST" action="{% url 'producer_signup' %}">
+      
+              {% csrf_token %}
+                  
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="id_first_name">First name:</label> 
+                        <input type="text" name="first_name" class="form-control" maxlength="256" required="" id="id_first_name">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="id_last_name">Last name:</label> 
+                        <input type="text" name="last_name" class="form-control" maxlength="256" required="" id="id_last_name">
+                    </div>
+                </div>
 
-        {% csrf_token %}
-        {{ form.as_p }}
-        {{ producer_profile_form.as_p }}
-    
-        <input type="submit" value="Sign Up">
-    </form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="id_email">Email:</label> 
+                        <input type="email" name="email" class="form-control" required="" id="id_email">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="id_username">Username:</label> 
+                        <input type="text" name="username" class="form-control" maxlength="150" autofocus="" required="" id="id_username"> 
+                        <span class="helptext"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></span>
+                    </div>
+                </div>
+                    
+              
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="id_password1">Password:</label> 
+                        <input type="password" name="password1" class="form-control" required="" id="id_password1"> 
+                        <span class="helptext">
+                            <small>
+                                <ul>
+                                    <li>Your password must contain at least 8 characters.</li>
+                                    <li>Your password can't be entirely numeric.</li>
+                                </ul> 
+                            </small>
+                        </span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="id_password2">Password confirmation:</label>
+                        <input type="password" name="password2" class="form-control" required="" id="id_password2"> 
+                        <span class="helptext"> <small>Enter the same password as before, for verification.</small></span>
+                    </div>
+                </div>
+
+                    
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="id_workex">Work Experience:</label> 
+                        <input type="number" name="workex" class="form-control" min="0" required="" id="id_workex">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="id_contact">Contact:</label> 
+                        <input type="text" name="contact" class="form-control" maxlength="12" required="" id="id_contact">
+                    </div>
+                </div>
+
+                  
+              <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="id_company">Company:</label> 
+                        <input type="text" name="company" class="form-control" maxlength="256" required="" id="id_company">
+                    </div>
+
+                  <div class="form-group col-md-6">
+                      <label for="id_bio">About You:</label> 
+                      <textarea name="bio"class="form-control" cols="40" rows="5" id="id_bio"></textarea>
+                   </div>
+              </div> 
+
+            <div class="justify-content-center form-row">
+                <input type="submit" class = "btn btn-danger " style= "font-weight: bold" value="Sign Up">
+            </div>
+              
+      
+          </form>
+        </div>
+      </div>
+
+
 {% endblock %}
+
+

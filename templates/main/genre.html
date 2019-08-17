@@ -1,15 +1,15 @@
 {% extends 'main/layout/base.html' %}
 
 {% block content %}
-<div class="card-deck">
-     <div class="row">
+
+     <div class="row d-flex">
      {% for genre in genre_list %}
           <div class="col-12">
                {% include 'main/components/genre_card.html' %}
           </div>
           {% endfor %}
      </div>
-</div>
+
 
 
 {% endblock %}

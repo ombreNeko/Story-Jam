@@ -1,5 +1,5 @@
 
-<div class="card text-white bg-secondary mt-3 storyblock">
+<div class="card box text-white bg-secondary mt-3 storyblock ">
     <div class="card-body">
       <h1 class="story-title text-center">{{story.name }}</h1>
     
@@ -16,13 +16,16 @@
     </div>
 
     {% if user == None %}
-      <a role="button" class="plot card-footer text-white bg-success btn">View Plot</a>
+    
+
+      <a role="button" class="plot card-footer text-white bg-danger btn btn-block">View Plot</a>
+    
     {% else %}
     
     <div class="row" style="margin: 0">
 
-        <a  href="#" role="button" class="plot card-footer text-white bg-success btn col-6">View Plot</a>
-        <a href="{% url 'story' story.id %}" role="button" class="card-footer text-white bg-success btn col-6">Make Deal</a>
+        <a  role="button" class="plot1 card-footer text-white bg-dark btn col-6">View Plot</a>
+        <a href="{% url 'story' story.id %}" role="button" class="card-footer text-white bg-danger btn col-6">Make a Deal</a>
       </div>
     
     

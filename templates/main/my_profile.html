@@ -1,54 +1,137 @@
 {% extends 'main/layout/base.html' %}
+{% load static %}
 {% block content %}
      
- <h1>{{user.username}}</h1>
-<h1>{{profile.workex}}</h1>
-<h1>{{profile.bio}}</h1>
-<h1>{{profile.contact}} </h1>
-<h1>{{profile.company}}</h1>
-<img src="#" alt="PHOTO">
-
-{% if stories != None%}
-    {% for story in stories %}
-    <div class="card text-white bg-secondary mt-3 mb-3">
-        <div class="card-body">
-            <h1 class="card-title text-center">{{story.name }}</h1>
-            <p class="text-center">{{story.summary}} </p>
-            {% if story.is_sold == False %}
-            <p>price : {{story.price}}</p>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6 on">
+                {% if profile.photo == None %}
+                <img src="{% static 'auth/def_dp.jpg' %}" class="card-img-top dp  " alt="Photo">
             {% else %}
-            <button type="button" class="btn btn-danger btn-lg " disabled>Sold</button>
-
+                <img src="{{ profile.photo.url }}" class="card-img-top dp " alt="Profile Pic">
             {% endif %}
-            <a class="btn btn-primary" href="{% url 'add_pdf' story.id %}" role="button">Add PDF</a>
+            <div class="overlay">
+                <a href="#" role="button" class="btn btn-dark "><i class="fas fa-user-edit"></i></a>
+            </div>
+                
+            
         </div>
     </div>
 
-    {% endfor %}
-        <div class="row justify-content-center" style="margin-left:0">
-            <a class="btn btn-dark btn-lg" href="{% url 'story_upload' %}" role="button">Add Story</a>
+    <div class="card text-white bg-dark mt-3 mytext">
+        <div class="card-header text-center size-m"><b>Basic Information</b></div>
+        <div class="card-body bg-secondary size-s">
+            <div class="row">
+                <div class="col">
+                    <b>Username:</b> {{user.username}}
+                </div>
+                <div class="col">
+                    <b>First Name:</b> {{user.first_name}}
+                </div>
+                <div class="col">
+                    <b>Last Name:</b> {{user.last_name}}
+                </div>   
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <b>Email Id:</b> {{user.email}}
+                </div>
+                <div class="col">
+                    <b>Work-Experience:</b> {{profile.workex}}&nbsp years
+                </div>
+                <div class="col">
+                    <b>Contact Number:</b> {{profile.contact}}
+                </div>   
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <b>About Me:</b>
+                </div>
+                <div class="col-md-4">
+                    <b>{{profile.bio}}</b>
+                </div>
+            </div>
         </div>
-{% endif %}
+    </div>
 
-<h1>Featured Stories</h1>
-<div class="card-deck">
-       
-    {% for story in featured %}
-        
-        {% include 'main/components/featured_stories_card.html' %}
-        
-     {% endfor %}
-</div>
-
-{% if deals != None %}
-<h1>Deals</h1>
-<div class="card-deck">
-    {% for deal in deals %}
-        {% include 'main/components/deal_card.html' %}
-    {% endfor %}
-</div>
-{% endif %}
+    {% if stories != None%}
+        <div class="card text-white bg-dark mb-3 mt-3">
+            <div class="card-header mytext size-m text-center "> <b> My Stories</b></div>
+            <div class="card-body bg-secondary">
+                <div class="card-columns">
+                {% for story in stories %}
+                
+                <div class="card box card-height bg-danger mytext">
+                    <div class="card-body">
+                        <h1 class="card-title text-center">{{story.name }}</h1>
+                        <p class="text-center">{{story.summary}} </p>
+                    </div>
+                    <div class="card-footer">
+                        {% if story.is_sold == False %}
+                            <p>Price : {{story.price}}</p>
+                        {% else %}
+                            <button type="button" class="btn btn-light text-black btn-lg " disabled>Sold</button>
+                            <br>
     
+                        {% endif %}
+                            <a class="btn btn-dark btn-lg mt-1" href="{% url 'add_pdf' story.id %}" role="button">Update PDF</a>
+                    </div>
+                </div>
+            
+            {% endfor %}
+        </div>
+            <div class="row justify-content-center" style="margin-left:0">
+                <a class="btn btn-dark btn-lg" href="{% url 'story_upload' %}" role="button">Add Story</a>
+            </div>
+            </div>
+        </div>
+        {% endif %}
+    
+
+        <div class="card text-white bg-dark mb-3 mt-3">
+            <div class="card-header mytext size-m text-center "> <b> My Featured Stories</b></div>
+            <div class="card-body bg-secondary">
+                {% if featured.all %}
+                <div class="card-columns">
+                    {% for story in featured %}
+    
+                        {% include 'main/components/featured_stories_card.html' %}
+                        
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="card-text">
+                    <p>You don't have any featured stories yet!</p>
+                </div>
+                {% endif %}
+            
+            </div>
+        </div>
+
+        {% if deals != None %}
+        <h1>Deals</h1>
+        <div class="card bg-dark mb-3 mytext ">
+            <div class="card-header text-white text-center size-m"><b>My Deals</b></div>
+            <div class="card-body bg-secondary">
+                <div class="card-columns">
+                    {% for deal in deals %}
+                        {% include 'main/components/deal_card.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+       
+
+
+
+
+
+
+
+
 
 
 {% endblock %}

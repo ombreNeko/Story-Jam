@@ -1,19 +1,20 @@
 {% if deal.story.is_featured == False %}
-    <div class="card">
+    <div class="card box bg-danger text-white">
       <div class="card-body">
-        <h5 class="card-title">{{deal.story.name}}</h5>
-        <p class="card-text">{{deal.story.writer}}</p>
-        <p class="card-text">{{deal.story.price}}</p>
-
+        <h5 class="card-text size-s"><b>Story:&nbsp </b> {{deal.story.name}}</h5>
+        <p class="card-text size-s"><b>Writer:&nbsp </b>{{deal.story.writer}}</p>
+        <p class="card-text size-s"><b>Amount Paid:&nbsp </b>{{deal.story.price}}</p>
+        <hr>
+        <a href="{% url 'story' deal.story.id %}" class="btn btn-dark mt-1 mb-1 mr-1 " role="button" >Show Details </a>
+        <br>
         {% if deal.story.upload %}
-          <a href="{{ deal.story.upload.url }}" target="_blank">Download PDF</a>
+          <a href="{{ deal.story.upload.url }}" target="_blank" class="btn btn-dark" role="button ">Download PDF</a>
           <a class="btn btn-success" href="{% url 'featured_upload' deal.story.id %}" role="button">Upload Featured!</a>
 
         {% else %}
         <button type="button" class="btn btn-secondary btn-lg" disabled>Upload Featured!</button>
 
         {% endif %}
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
       </div>
     </div>
 {% endif %}

@@ -22,6 +22,6 @@ class FeaturedForm(forms.ModelForm):
 class PDFform(forms.ModelForm):
     class Meta:
         model = models.Story
-        fields = ('upload','genre')
+        fields = ('upload',)
 
 
