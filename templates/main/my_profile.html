@@ -4,10 +4,10 @@
      
     <div class="row justify-content-center mt-5">
         <div class="col-md-6 on">
-                {% if profile.photo == None %}
-                <img src="{% static 'auth/def_dp.jpg' %}" class="card-img-top dp  " alt="Photo">
-            {% else %}
+                {% if profile.photo.all %}
                 <img src="{{ profile.photo.url }}" class="card-img-top dp " alt="Profile Pic">
+                {% else %}
+                <img src="{% static 'auth/def_dp.jpg' %}" class="card-img-top dp  " alt="Photo">
             {% endif %}
             <div class="overlay">
                 <a href="#" role="button" class="btn btn-dark "><i class="fas fa-user-edit"></i></a>
